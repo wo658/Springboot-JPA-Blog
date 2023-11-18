@@ -1,9 +1,42 @@
-
-
+server:
+  port: 8000
+  servlet:
+    context-path: /blog
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    hiddenmethod:
+      filter: 
+        enabled: true
+      
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: root
     password: whdgns4321!
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create #data definition language auto 최초 create 이후 update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl   # 네이밍을 그대로 가져가겠다. ( 다른 전략 사용 시 표기법에 따라 바꿈)                             
+      use-new-id-generator-mappings: false # jpa기본 넘버링을 따라가지 않겠다. 
+    show-sql: true # 이거 때문에 Console창에 sql문이 보인다.
+    properties:
+      hibernate.format_sql: true # 이거 때문에 한줄로 보이지 않는다.
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+
+
+    
